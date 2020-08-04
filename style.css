@@ -7,8 +7,6 @@
 
 main {
     background-color: rgb(100,0,88);
-    height: 75%;
-    width: 75%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,21 +19,16 @@ main {
     background-color: rgb(74,145,88);
     position: absolute;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
+    flex: 0 0 auto;
 
 }
 
 #menu-box {
     background-color: rgb(144, 123, 184);
-    height: 500px;
-    width: 500px;
     position: relative;
     z-index: 2;
+    height: 200px;
+    width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,6 +49,6 @@ main {
     color: rgb(0, 0, 0);
 }
 
-.hidden {
+#menu-box.hidden {
     display: none;
 }
