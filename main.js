@@ -5,20 +5,20 @@ function getContext () {
 }
 
 // Global Variables
-
-const WIDTH = 1000
-const HEIGHT = 1000
-const rabbitColor = rgb(255 , 255, 255)
-const wolfColor = rgb(220, 2220, 220)
-const bearColor = rgb(165, 42, 42)
+const WIDTH = canvas.width
+const HEIGHT = canvas.height
+const rabbitColor = "rgb(255 , 255, 255)"
+const wolfColor = "rgb(220, 2220, 220)"
+const bearColor = "rgb(165, 42, 42)"
 let animationId
 
 // Start Function
 function startGame () {
   let menuBox = document.querySelector("#menu-box")
-  menuBox.classList.add(".hidden")
+  menuBox.classList.add("hidden")
   animationId = window.setInterval(drawScreen, 10)
-
+  console.log("Game Started!")
+}
 
 //Function to Clear Screen
 function clearScreen () {
@@ -47,7 +47,7 @@ let bear = makeCharacter(600, 700, 200, 100, bearColor)
 function drawCharacter (x, y, width, height, color) {
   let ctx = getContext ()
   ctx.fillStyle = color
-  ctx.fillRec(x, y, width, height)
+  ctx.fillRect(x, y, width, height)
 }
 // Function to draw objects on the screen 
 function drawScreen() {
@@ -71,7 +71,7 @@ function keyPressListener (event) {
 }
 
 //Event Listner to hide menu box and start game
-let startButton = document.querySelector("#button")
+let startButton = document.querySelector("#start-button")
 startButton.addEventListener("click", startGame)
 
 //Event Listener for event handle keypress listener

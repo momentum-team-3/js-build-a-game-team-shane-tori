@@ -43,13 +43,13 @@ main {
     justify-items: center;
     align-content: center;
 }
-#button {
+#start-button {
     padding: 5px;
     background-color: rgb(100,0,88);
     color: rgb( 255, 255, 255)
 }
 
-#button:hover {
+#start-button:hover {
     font-weight: bold;
     text-decoration: underline;
     background-color: rgb( 255, 255, 255);
