@@ -1,52 +1,61 @@
-#canvas {
-    background-color: rgb(74,145,88);
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-    z-index: 1;
+* {
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    font-family: arial;
 }
 
- /*#gameplay-box {
+main {
     background-color: rgb(100,0,88);
+    height: 75%;
+    width: 75%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     justify-items: center;
     align-content: center;
-    position: relative;
+}
+
+#canvas {
+    background-color: rgb(74,145,88);
+    position: absolute;
     z-index: 1;
- */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+
 }
 
 #menu-box {
     background-color: rgb(144, 123, 184);
     height: 500px;
     width: 500px;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
     position: relative;
     z-index: 2;
-
-}
-
-/*main {
-    display:flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     justify-items: center;
     align-content: center;
-}*/
-
+}
 #button {
+    padding: 5px;
+    background-color: rgb(100,0,88);
+    color: rgb( 255, 255, 255)
+}
 
+#button:hover {
+    font-weight: bold;
+    text-decoration: underline;
+    background-color: rgb( 255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.hidden {
+    display: none;
 }
