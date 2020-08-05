@@ -14,8 +14,7 @@ let animationId
 
 // Start Function
 function startGame () {
-  let menuBox = document.querySelector("#menu-box")
-  menuBox.classList.add("hidden")
+  
   animationId = window.setInterval(drawScreen, 10)
   console.log("Game Started!")
 }
@@ -71,8 +70,11 @@ function keyPressListener (event) {
 }
 
 //Event Listner to hide menu box and start game
-let startButton = document.querySelector("#start-button")
-startButton.addEventListener("click", startGame)
+//
+
+// let startButton = document.querySelector("#start-button")
+// startButton.addEventListener("click", startGame)
 
 //Event Listener for event handle keypress listener
 window.addEventListener("keydown", keyPressListener)
+

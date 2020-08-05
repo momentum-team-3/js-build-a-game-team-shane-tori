@@ -6,11 +6,10 @@
 }
 
 main {
-    background-color: rgb(100,0,88);
-    height: 75%;
-    width: 75%;
+    
+    
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     justify-items: center;
@@ -18,34 +17,30 @@ main {
 }
 
 #canvas {
+    background-image: url("Grass_01_512.png");
     background-color: rgb(74,145,88);
-    position: absolute;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
+    
+    
 
 }
 
 #menu-box {
-    background-color: rgb(144, 123, 184);
-    height: 500px;
-    width: 500px;
-    position: relative;
-    z-index: 2;
+    background-color: rgb(16, 65, 56);
+    
+    height: auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     justify-items: center;
     align-content: center;
+    
+   
 }
 #start-button {
     padding: 5px;
-    background-color: rgb(100,0,88);
+    background-color: rgb(15, 95, 187);
     color: rgb( 255, 255, 255)
 }
 
@@ -58,4 +53,11 @@ main {
 
 .hidden {
     display: none;
+}
+p {
+     font-style: m6x11;
+     font-size: 32px;
+     color: rgb(219, 219, 219);
+
+
 }
