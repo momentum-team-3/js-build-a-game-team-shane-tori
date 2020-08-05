@@ -10,6 +10,10 @@ const HEIGHT = canvas.height
 const rabbitColor = "rgb(255 , 255, 255)"
 const wolfColor = "rgb(220, 2220, 220)"
 const bearColor = "rgb(165, 42, 42)"
+const boarColor = "rgb(120, 50, 50)"
+const cayoteColor = "rgb(130, 20, 60)"
+const lionColor = "rgb(90, 20, 40)"
+const foxColor = "rgb(200, 95, 50)"
 let animationId
 
 //Global Image Variables
@@ -84,9 +88,17 @@ let wolf = makeCharacter(300, 640, 125, 80, wolfColor)
 wolf.velocity = [2,0]
 let bear = makeCharacter(200, 560, 200, 80, bearColor)
 bear.velocity = [1,0]
+let boar = makeCharacter(200, 480, 180, 80, boarColor)
+boar.velocity= [2,0]
+let cayote = makeCharacter(200, 400, 130, 80, cayoteColor)
+cayote.velocity= [3,0]
+let lion = makeCharacter(200, 320, 160, 80, lionColor)
+lion.velocity= [1,0]
+let fox = makeCharacter(200, 240, 120, 80, foxColor)
+fox.velocity= [4,0]
 
 //Array of Enemies
-enemyArr = [wolf, bear]
+enemyArr = [wolf, bear, boar, cayote, lion, fox]
 
 //Function to draw characters
 function drawCharacter (x, y, width, height, color) {
@@ -99,7 +111,13 @@ function drawScreen() {
   clearScreen()
   updateBearPosition()
   updateWolfPosition()
-  if (collision(rabbit, bear)) {
+  updateBoarPosition()
+  updateCayotePosition()
+  updateLionPosition()
+  updateFoxPosition()
+  
+  
+  if (collision(rabbit, bear, wolf, boar, cayote, lion, fox)) {
     window.clearInterval(animationId)
     alert(("You got eaten!"))
   }
@@ -107,6 +125,10 @@ function drawScreen() {
   drawCharacter(rabbit.x, rabbit.y, rabbit.width, rabbit.height, rabbit.color)
   drawCharacter(wolf.x, wolf.y, wolf.width, wolf.height, wolf.color)
   drawCharacter(bear.x, bear.y, bear.width, bear.height, bear.color)
+  drawCharacter(boar.x, boar.y, boar.width, boar.height, boar.color)
+  drawCharacter(cayote.x, cayote.y, cayote.width, cayote.height, cayote.color)
+  drawCharacter(lion.x, lion.y, lion.width, lion.height, lion.color)
+  drawCharacter(fox.x, fox.y, fox.width, fox.height, fox.color)
 }
 
 //Event handler to control movement of the rabbit via arrow keys
@@ -170,6 +192,51 @@ function updateBearPosition () {
     }
 }
 
+
+function updateBoarPosition () {
+    boar.x += boar.velocity[0]
+    boar.y += boar.velocity[1]
+  
+    if (boar.x >= (boar.xUpper + 40)) {
+      boar.x = boar.xLower
+      }
+    if (boar.x <= (boar.xLower - 40)) {
+      boar.x = (boar.xUpper + 40)
+      }
+  }
+  function updateCayotePosition () {
+    cayote.x += cayote.velocity[0]
+    cayote.y += cayote.velocity[1]
+  
+    if (cayote.x >= (cayote.xUpper + 40)) {
+      cayote.x = cayote.xLower
+      }
+    if (cayote.x <= (cayote.xLower - 40)) {
+      cayote.x = (cayote.xUpper + 40)
+      }
+  }
+  function updateLionPosition () {
+    lion.x += lion.velocity[0]
+    lion.y += lion.velocity[1]
+  
+    if (lion.x >= (lion.xUpper + 40)) {
+      lion.x = lion.xLower
+      }
+    if (lion.x <= (lion.xLower - 40)) {
+      lion.x = (lion.xUpper + 40)
+      }
+  }
+  function updateFoxPosition () {
+    fox.x += fox.velocity[0]
+    fox.y += fox.velocity[1]
+  
+    if (fox.x >= (fox.xUpper + 40)) {
+      fox.x = fox.xLower
+      }
+    if (fox.x <= (fox.xLower - 40)) {
+      fox.x = (fox.xUpper + 40)
+      }
+  }
 //Event Listner to hide menu box and start game
 //
 
