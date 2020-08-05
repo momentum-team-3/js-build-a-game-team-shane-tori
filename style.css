@@ -6,12 +6,7 @@
 }
 
 main {
-<<<<<<< HEAD
-    
-    
-=======
     background-color: rgb(100,0,88);
->>>>>>> fed4554c9d59ff683310910e88ab97dcdfb7c464
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,30 +18,18 @@ main {
 #canvas {
     background-image: url("Grass_01_512.png");
     background-color: rgb(74,145,88);
-<<<<<<< HEAD
     
     
-=======
-    position: absolute;
-    z-index: 1;
     flex: 0 0 auto;
->>>>>>> fed4554c9d59ff683310910e88ab97dcdfb7c464
 
 }
 
 #menu-box {
-<<<<<<< HEAD
-    background-color: rgb(16, 65, 56);
+    background-color: rgb(144, 123, 184);
     
+  
     height: auto;
     width: 100%;
-=======
-    background-color: rgb(144, 123, 184);
-    position: relative;
-    z-index: 2;
-    height: 200px;
-    width: 200px;
->>>>>>> fed4554c9d59ff683310910e88ab97dcdfb7c464
     display: flex;
     flex-direction: column;
     align-items: center;
