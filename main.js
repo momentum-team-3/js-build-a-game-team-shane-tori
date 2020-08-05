@@ -14,6 +14,7 @@ const boarColor = "rgb(120, 50, 50)"
 const cayoteColor = "rgb(130, 20, 60)"
 const lionColor = "rgb(90, 20, 40)"
 const foxColor = "rgb(200, 95, 50)"
+const catColor = "rgb(110, 80, 30)"
 let animationId
 
 //Global Image Variables
@@ -89,16 +90,19 @@ wolf.velocity = [2,0]
 let bear = makeCharacter(200, 560, 200, 80, bearColor)
 bear.velocity = [1,0]
 let boar = makeCharacter(200, 480, 180, 80, boarColor)
-boar.velocity= [2,0]
+boar.velocity= [1.5,0]
 let cayote = makeCharacter(200, 400, 130, 80, cayoteColor)
 cayote.velocity= [3,0]
 let lion = makeCharacter(200, 320, 160, 80, lionColor)
 lion.velocity= [1,0]
 let fox = makeCharacter(200, 240, 120, 80, foxColor)
 fox.velocity= [4,0]
+let cat = makeCharacter(200, 160, 110, 80, catColor)
+cat.velocity= [2,0]
+
 
 //Array of Enemies
-enemyArr = [wolf, bear, boar, cayote, lion, fox]
+enemyArr = [wolf, bear, boar, cayote, lion, fox, cat]
 
 //Function to draw characters
 function drawCharacter (x, y, width, height, color) {
@@ -115,9 +119,9 @@ function drawScreen() {
   updateCayotePosition()
   updateLionPosition()
   updateFoxPosition()
+  updateCatPosition()
   
-  
-  if (collision(rabbit, bear, wolf, boar, cayote, lion, fox)) {
+  if (collision(rabbit, bear, wolf, boar, cayote, lion, fox, cat)) {
     window.clearInterval(animationId)
     alert(("You got eaten!"))
   }
@@ -129,6 +133,7 @@ function drawScreen() {
   drawCharacter(cayote.x, cayote.y, cayote.width, cayote.height, cayote.color)
   drawCharacter(lion.x, lion.y, lion.width, lion.height, lion.color)
   drawCharacter(fox.x, fox.y, fox.width, fox.height, fox.color)
+  drawCharacter(cat.x, cat.y, cat.width, cat.height, cat.color)
 }
 
 //Event handler to control movement of the rabbit via arrow keys
@@ -235,6 +240,18 @@ function updateBoarPosition () {
       }
     if (fox.x <= (fox.xLower - 40)) {
       fox.x = (fox.xUpper + 40)
+      }
+  }
+  
+  function updateCatPosition () {
+    cat.x += cat.velocity[0]
+    cat.y += cat.velocity[1]
+  
+    if (cat.x >= (cat.xUpper + 40)) {
+      cat.x = cat.xLower
+      }
+    if (cat.x <= (cat.xLower - 40)) {
+      cat.x = (cat.xUpper + 40)
       }
   }
 //Event Listner to hide menu box and start game
