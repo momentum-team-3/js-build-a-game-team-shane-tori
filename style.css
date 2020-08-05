@@ -7,6 +7,7 @@
 
 main {
     background-color: rgb(100,0,88);
+    background-image: url("Grass_02_512.png");
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +27,7 @@ main {
 
 #menu-box {
     background-color: rgb(144, 123, 184);
-    
+    background-image: url("Wood_01_2048.png");
   
     height: auto;
     width: 100%;
