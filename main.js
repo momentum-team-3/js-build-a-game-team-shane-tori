@@ -38,9 +38,9 @@ function makeCharacter (x, y, width, height, color) {
 }
 
 // Creation of character objects 
-let rabbit = makeCharacter(450, 900, 100, 100, rabbitColor)
-let wolf = makeCharacter(300, 800, 125, 100, wolfColor)
-let bear = makeCharacter(600, 700, 200, 100, bearColor)
+let rabbit = makeCharacter(360, 720, 80, 80, rabbitColor)
+let wolf = makeCharacter(300, 640, 125, 80, wolfColor)
+let bear = makeCharacter(200, 560, 200, 80, bearColor)
 
 //Function to draw characters
 function drawCharacter (x, y, width, height, color) {
@@ -59,13 +59,13 @@ function drawScreen() {
 //Event handler to control movement of the rabbit via arrow keys
 function keyPressListener (event) {
   if (event.key === "ArrowUp") {
-      rabbit.y -= 100
+      rabbit.y -= 80
   } else if (event.key === "ArrowDown") {
-      rabbit.y += 100
+      rabbit.y += 80
   } else if (event.key === "ArrowLeft") {
-      rabbit.x -= 10
+      rabbit.x -= 5
   } else if (event.key === "ArrowRight") {
-      rabbit.x += 10
+      rabbit.x += 5
   }
 }
 
