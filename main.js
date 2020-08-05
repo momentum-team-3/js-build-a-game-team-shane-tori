@@ -102,7 +102,7 @@ cat.velocity= [2,0]
 
 
 //Array of Enemies
-enemyArr = [wolf, bear, boar, cayote, lion, fox, cat]
+const enemies = [wolf, bear, boar, cayote, lion, fox, cat]
 
 //Function to draw characters
 function drawCharacter (x, y, width, height, color) {
@@ -113,15 +113,8 @@ function drawCharacter (x, y, width, height, color) {
 // Function to draw objects on the screen 
 function drawScreen() {
   clearScreen()
-  updateBearPosition()
-  updateWolfPosition()
-  updateBoarPosition()
-  updateCayotePosition()
-  updateLionPosition()
-  updateFoxPosition()
-  updateCatPosition()
-  
-  if (collision(rabbit, bear, wolf, boar, cayote, lion, fox, cat)) {
+  updateEnemyPosition()
+  if (collision()){
     window.clearInterval(animationId)
     alert(("You got eaten!"))
   }
@@ -161,18 +154,34 @@ function keyPressListener (event) {
     }
 }
 
-function collision (char1, char2) {
-  if (char1.x < char2.x + char2.width &&
-      char1.x + char1.width > char2.x &&
-      char1.y < char2.y + char2.height &&
-      char1.y + char1.height > char2.y) {
+function collision () {
+  for (let enemy of enemies) {
+  if (rabbit.x < enemy.x + enemy.width &&
+    rabbit.x + rabbit.width > enemy.x &&
+    rabbit.y < enemy.y + enemy.height &&
+    rabbit.y + rabbit.height > enemy.y) {
         return true
       } else {
         return false
       }
+  }
  }
 
 // Update Enemy Position
+function updateEnemyPosition () {
+  for (let enemy of enemies) {
+    enemy.x += enemy.velocity[0]
+    enemy.y += enemy.velocity[1]
+
+  if (enemy.x >= (enemy.xUpper + 40)) {
+    enemy.x = enemy.xLower
+    }
+  if (enemy.x <= (enemy.xLower - 40)) {
+    enemy.x = (enemy.xUpper + 40)
+    }
+}
+}
+/*
 function updateWolfPosition () {
   wolf.x += wolf.velocity[0]
   wolf.y += wolf.velocity[1]
@@ -196,64 +205,7 @@ function updateBearPosition () {
     bear.x = (bear.xUpper + 40)
     }
 }
-
-
-function updateBoarPosition () {
-    boar.x += boar.velocity[0]
-    boar.y += boar.velocity[1]
-  
-    if (boar.x >= (boar.xUpper + 40)) {
-      boar.x = boar.xLower
-      }
-    if (boar.x <= (boar.xLower - 40)) {
-      boar.x = (boar.xUpper + 40)
-      }
-  }
-  function updateCayotePosition () {
-    cayote.x += cayote.velocity[0]
-    cayote.y += cayote.velocity[1]
-  
-    if (cayote.x >= (cayote.xUpper + 40)) {
-      cayote.x = cayote.xLower
-      }
-    if (cayote.x <= (cayote.xLower - 40)) {
-      cayote.x = (cayote.xUpper + 40)
-      }
-  }
-  function updateLionPosition () {
-    lion.x += lion.velocity[0]
-    lion.y += lion.velocity[1]
-  
-    if (lion.x >= (lion.xUpper + 40)) {
-      lion.x = lion.xLower
-      }
-    if (lion.x <= (lion.xLower - 40)) {
-      lion.x = (lion.xUpper + 40)
-      }
-  }
-  function updateFoxPosition () {
-    fox.x += fox.velocity[0]
-    fox.y += fox.velocity[1]
-  
-    if (fox.x >= (fox.xUpper + 40)) {
-      fox.x = fox.xLower
-      }
-    if (fox.x <= (fox.xLower - 40)) {
-      fox.x = (fox.xUpper + 40)
-      }
-  }
-  
-  function updateCatPosition () {
-    cat.x += cat.velocity[0]
-    cat.y += cat.velocity[1]
-  
-    if (cat.x >= (cat.xUpper + 40)) {
-      cat.x = cat.xLower
-      }
-    if (cat.x <= (cat.xLower - 40)) {
-      cat.x = (cat.xUpper + 40)
-      }
-  }
+*/
 //Event Listner to hide menu box and start game
 //
 
