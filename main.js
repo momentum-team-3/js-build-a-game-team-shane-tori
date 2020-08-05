@@ -12,6 +12,13 @@ const wolfColor = "rgb(220, 2220, 220)"
 const bearColor = "rgb(165, 42, 42)"
 let animationId
 
+//Global Image Variables
+/*
+const rabbitImage = new Image()
+rabbitImage.src = ""
+enemyImages = [new Image(), new Image(), new Image(), new Image()]
+*/
+
 // Start Function
 function startGame () {
   animationId = window.setInterval(drawScreen, 10)
@@ -33,25 +40,28 @@ function clearScreen () {
   ctx.clearRect(0,0, WIDTH, HEIGHT)
 }
 
+/*
 //function to creat spawn points
 function createSpawnPoint (x,y) {
   return {
     x: x,
     y: y,
+    velocity: velocity,
+    vx: () => spawn.velocity[0],
+    vy: () => spawn.velocity[1],
   }
 }
 
 //Spawn Points
-let rabbitSpawn = createSpawnPoint(360,720)
-let spawn1 = createSpawnPoint(0,640)
-let spawn2 = createSpawnPoint(0,560)
-let spawn3 = createSpawnPoint(0,480)
-let spawn4 = createSpawnPoint(0,400)
-let spawn5 = createSpawnPoint(0,320)
-let spawn6 = createSpawnPoint(0,240)
-let spawn7 = createSpawnPoint(0,160)
-let spawn8 = createSpawnPoint(0,80)
-  
+let spawn1 = createSpawnPoint(0, 640, [1,0])
+let spawn2 = createSpawnPoint(0, 560, [1.5,0])
+let spawn3 = createSpawnPoint(0, 480, [2,0])
+let spawn4 = createSpawnPoint(0, 400, [2.5,0])
+let spawn5 = createSpawnPoint(0, 320, [3,0])
+let spawn6 = createSpawnPoint(0, 240, [3.5,0])
+let spawn7 = createSpawnPoint(0, 160, [4,0])
+let spawn8 = createSpawnPoint(0, 80, [5,0])
+*/
 
 // Function to prodcue chararacter objects
 function makeCharacter (x,y, width, height, color) {
@@ -71,9 +81,9 @@ function makeCharacter (x,y, width, height, color) {
 // Creation of character objects 
 let rabbit = makeCharacter(360, 720, 80, 80, rabbitColor)
 let wolf = makeCharacter(300, 640, 125, 80, wolfColor)
-wolf.velocity = [-2,0]
+wolf.velocity = [2,0]
 let bear = makeCharacter(200, 560, 200, 80, bearColor)
-bear.velocity = [-1,0]
+bear.velocity = [1,0]
 
 //Array of Enemies
 enemyArr = [wolf, bear]
@@ -111,7 +121,7 @@ function keyPressListener (event) {
       rabbit.x += 10
   }
   if (rabbit.x >= (rabbit.xUpper + 40)) {
-    rabbit.x = (rabbit.xLower - 40)
+    rabbit.x = rabbit.xLower
     }
   if (rabbit.x <= (rabbit.xLower - 40)) {
     rabbit.x = (rabbit.xUpper + 40)
@@ -141,16 +151,10 @@ function updateWolfPosition () {
   wolf.y += wolf.velocity[1]
 
   if (wolf.x >= (wolf.xUpper + 40)) {
-    wolf.x = (wolf.xLower - 40)
+    wolf.x = wolf.xLower
     }
   if (wolf.x <= (wolf.xLower - 40)) {
     wolf.x = (wolf.xUpper + 40)
-    }
-  if (wolf.y >= (wolf.yUpper + 40)) {
-    wolf.y = (wolf.yLower - 40)
-    }
-  if (wolf.y <= (wolf.yLower - 40)) {
-    wolf.y = (wolf.yUpper + 40)
     }
 }
 
@@ -159,16 +163,10 @@ function updateBearPosition () {
   bear.y += bear.velocity[1]
 
   if (bear.x >= (bear.xUpper + 40)) {
-    bear.x = (bear.xLower - 40)
+    bear.x = bear.xLower
     }
   if (bear.x <= (bear.xLower - 40)) {
     bear.x = (bear.xUpper + 40)
-    }
-  if (bear.y >= (bear.yUpper + 40)) {
-    bear.y = (bear.yLower - 40)
-    }
-  if (bear.y <= (bear.yLower - 40)) {
-    bear.y = (bear.yUpper + 40)
     }
 }
 
