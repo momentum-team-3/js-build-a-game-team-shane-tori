@@ -18,6 +18,15 @@ function startGame () {
   console.log("Game Started!")
 }
 
+//End Game Function
+function endGame () {
+  if (rabbit.y <= rabbit.yLower) {
+    window.clearInterval(animationId)
+    alert(("You Win!"))
+
+  }
+}
+
 //Function to Clear Screen
 function clearScreen () {
   let ctx = getContext ()
@@ -84,6 +93,7 @@ function drawScreen() {
     window.clearInterval(animationId)
     alert(("You got eaten!"))
   }
+  endGame()
   drawCharacter(rabbit.x, rabbit.y, rabbit.width, rabbit.height, rabbit.color)
   drawCharacter(wolf.x, wolf.y, wolf.width, wolf.height, wolf.color)
   drawCharacter(bear.x, bear.y, bear.width, bear.height, bear.color)
@@ -106,11 +116,11 @@ function keyPressListener (event) {
   if (rabbit.x <= (rabbit.xLower - 40)) {
     rabbit.x = (rabbit.xUpper + 40)
     }
-  if (rabbit.y >= (rabbit.yUpper + 40)) {
-    rabbit.y = (rabbit.yLower - 40)
+  if (rabbit.y >= rabbit.yUpper) {
+    rabbit.y = rabbit.yUpper
     }
-  if (rabbit.y <= (rabbit.yLower - 40)) {
-    rabbit.y = (rabbit.yUpper + 40)
+  if (rabbit.y <= rabbit.yLower) {
+    rabbit.y = rabbit.yLower
     }
 }
 
