@@ -17,10 +17,10 @@ const foxColor = "rgb(200, 95, 50)"
 const catColor = "rgb(110, 80, 30)"
 let animationId
 
-//Global Image Variables
 /*
 const rabbitImage = new Image()
-rabbitImage.src = ""
+rabbitImage.src = "9317247a2d60bf6ab62e4fafc1df6621.jpg"
+
 enemyImages = [new Image(), new Image(), new Image(), new Image()]
 */
 
