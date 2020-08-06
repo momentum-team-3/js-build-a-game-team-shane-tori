@@ -22,23 +22,15 @@ const rabbitDeadimg= new Image ()
 rabbitDeadimg.src = "AnimalsFarmAndPuzzlePack/Characters/Rabbit_Dead.png"
 
 const carrotImage= new Image ()
-carrotImage.src = "AnimalsFarmAndPuzzlePack/Characters/Carrot.png"
+carrotImage.src = "AnimalsFarmAndPuzzlePack/Objects/Carrot.png"
 
+// Global Declaration of Animation ID
 let animationId
 
 // Start Function
 function startGame () {
   animationId = window.setInterval(drawScreen, 10)
   console.log("Game Started!")
-}
-
-//End Game Function
-function endGame () {
-  if (rabbit.y <= rabbit.yLower) {
-    window.clearInterval(animationId)
-    alert(("You Win!"))
-
-  }
 }
 
 //Function to Clear Screen
@@ -62,30 +54,48 @@ function makeCharacter (x,y, width, height, image) {
   }
 }
 
+//Creation of random numbers for velocity
+function randomVelocity (min, max) {
+  let range = max - min + 1
+  let randomized = Math.floor(Math.random() * range)
+  if (min + randomized === 0) {
+  return 3
+  } else {
+      return min + randomized
+  }
+}
+
 // Creation of character objects 
 let rabbit = makeCharacter(360, 720, 80, 80, rabbitImage)
+let carrot = makeCharacter(360, 0, 80, 80, carrotImage)
 let wolf = makeCharacter(300, 640, 80, 80, catImage)
-wolf.velocity = [3.5,0]
+wolf.velocity = [randomVelocity(-5,5) ,0]
 let bear = makeCharacter(200, 560, 80, 80, foxImage)
-bear.velocity = [1,0]
+bear.velocity = [randomVelocity(-5,5) ,0]
 let boar = makeCharacter(200, 480, 80, 80, catImage)
-boar.velocity= [3,0]
+boar.velocity= [randomVelocity(-5,5) ,0]
 let cayote = makeCharacter(200, 400, 80, 80, foxImage)
-cayote.velocity= [3.5,0]
+cayote.velocity= [randomVelocity(-5,5) ,0]
 let lion = makeCharacter(200, 320, 80, 80, catImage)
-lion.velocity= [1.5,0]
+lion.velocity = [randomVelocity(-5,5) ,0]
 let fox = makeCharacter(200, 240, 80, 80, foxImage)
-fox.velocity= [4,0]
+fox.velocity = [randomVelocity(-5,5) ,0]
 let cat = makeCharacter(200, 160, 80, 80, catImage)
-cat.velocity= [3.5,0]
+cat.velocity = [randomVelocity(-5,5) ,0]
 let foxy = makeCharacter(200, 80, 80, 80, foxImage)
-foxy.velocity= [2.5,0]
+foxy.velocity = [randomVelocity(-5,5) ,0]
+let foxTwo = makeCharacter(0, 240, 80, 80, foxImage)
+foxTwo.velocity = [randomVelocity(-5,5) ,0]
+let catTwo = makeCharacter(0, 160, 80, 80, catImage)
+catTwo.velocity = [randomVelocity(-5,5) ,0]
+let foxyTwo = makeCharacter(0, 80, 80, 80, foxImage)
+foxyTwo.velocity = [randomVelocity(-5,5) ,0]
 
 // Array of characters to be drawn
-const characters = [rabbit, wolf, bear, boar, cayote, lion, fox, cat, foxy]
+const characters = [rabbit, carrot, wolf, bear, boar, cayote, lion, fox, cat, foxy, foxTwo, catTwo, foxyTwo]
 
 // Array of Enemies
-const enemies = [wolf, bear, boar, cayote, lion, fox, cat, foxy]
+const enemies = [wolf, bear, boar, cayote, lion, fox, cat, foxy, foxTwo, catTwo, foxyTwo]
 
 //Function to draw characters
 function drawCharacter () {
@@ -97,19 +107,11 @@ function drawCharacter () {
 
 // Function to draw objects on the screen 
 function drawScreen() {
-    let playerDead= false
   clearScreen()
   updateEnemyPosition()
   checkforCollisions()
-  
-if (playerDead) { 
-    drawCharacter(rabbit.x,rabbit.y, rabbit.width, rabbit.height, rabbitDeadimg)
-    
-}  else { drawCharacter(rabbit.x, rabbit.y, rabbit.width, rabbit.height, rabbit.image)
-
-}
-endGame()
-drawCharacter()
+  winningCollision()
+  drawCharacter()
 }
 //Event handler to control movement of the rabbit via arrow keys
 function keyPressListener (event) {
@@ -136,7 +138,6 @@ function keyPressListener (event) {
     }
 }
 
-
 function detectCollision(o1, o2) {
   if (o1.x < o2.x + o2.width &&
     o1.x + o1.width > o2.x &&
@@ -148,13 +149,23 @@ function detectCollision(o1, o2) {
       }
 }
 
+// Rabbit/Enemy Collision 
 function checkforCollisions () {
   for (let enemy of enemies) {
     if (detectCollision(rabbit, enemy)) {
-      window.clearInterval(animationId)
-    alert(("You got eaten!"))
+        window.clearInterval(animationId)
+        rabbit.image = rabbitDeadimg
+        alert(("You got eaten!"))
     }
   }
+}
+
+// Rabbit/Correct Collision
+function winningCollision () {
+    if (detectCollision(rabbit, carrot)) {
+      window.clearInterval(animationId)
+      alert(("You Win!"))
+    }
 }
 
 // Update Enemy Position
