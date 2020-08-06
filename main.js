@@ -7,6 +7,7 @@ function getContext () {
 // Global Variables
 const WIDTH = canvas.width
 const HEIGHT = canvas.height
+/* 
 const rabbitColor = "rgb(255 , 255, 255)"
 const wolfColor = "rgb(220, 2220, 220)"
 const bearColor = "rgb(165, 42, 42)"
@@ -15,12 +16,39 @@ const cayoteColor = "rgb(130, 20, 60)"
 const lionColor = "rgb(90, 20, 40)"
 const foxColor = "rgb(200, 95, 50)"
 const catColor = "rgb(110, 80, 30)"
-let animationId
+*/
+const wolfImage = new Image()
+wolfImage.src= "AnimalsFarmAndPuzzlePack/Characters/Fox_Right.png"
 
-/*
+const bearImage = new Image()
+bearImage.src = "AnimalsFarmAndPuzzlePack/Characters/Cat_Right.png"
+
+const boarImage = new Image()
+boarImage.src = "AnimalsFarmAndPuzzlePack/Characters/Fox_Right.png"
+
+const cayoteImage = new Image()
+cayoteImage.src = "AnimalsFarmAndPuzzlePack/Characters/Cat_Right.png"
+
+const lionImage = new Image()
+lionImage.src= "AnimalsFarmAndPuzzlePack/Characters/Fox_Right.png"
+
+const foxImage = new Image()
+foxImage.src = "AnimalsFarmAndPuzzlePack/Characters/Cat_Right.png"
+
+const catImage = new Image()
+catImage.src = "AnimalsFarmAndPuzzlePack/Characters/Fox_Right.png"
+
 const rabbitImage = new Image()
-rabbitImage.src = "9317247a2d60bf6ab62e4fafc1df6621.jpg"
+rabbitImage.src = "AnimalsFarmAndPuzzlePack/Characters/Rabbit_Up.png"
 
+const foxyImage = new Image()
+foxyImage.src = "AnimalsFarmAndPuzzlePack/Characters/Cat_Right.png"
+
+const rabbitDeadimg= new Image ()
+rabbitDeadimg.src = "AnimalsFarmAndPuzzlePack/Characters/Rabbit_Dead.png"
+
+let animationId
+/*
 enemyImages = [new Image(), new Image(), new Image(), new Image()]
 */
 
@@ -69,7 +97,7 @@ let spawn8 = createSpawnPoint(0, 80, [5,0])
 */
 
 // Function to prodcue chararacter objects
-function makeCharacter (x,y, width, height, color) {
+function makeCharacter (x,y, width, height, image) {
   return {
     x: x,
     y: y,
@@ -79,54 +107,64 @@ function makeCharacter (x,y, width, height, color) {
     yUpper: HEIGHT - height,
     xLower: 0,
     yLower: 0,
-    color: color,
+    image: image,
   }
 }
 
 // Creation of character objects 
-let rabbit = makeCharacter(360, 720, 80, 80, rabbitColor)
-let wolf = makeCharacter(300, 640, 125, 80, wolfColor)
-wolf.velocity = [2,0]
-let bear = makeCharacter(200, 560, 200, 80, bearColor)
+let rabbit = makeCharacter(360, 720, 80, 80, rabbitImage)
+let wolf = makeCharacter(300, 640, 125, 80, wolfImage)
+wolf.velocity = [3.5,0]
+let bear = makeCharacter(200, 560, 160, 80, bearImage)
 bear.velocity = [1,0]
-let boar = makeCharacter(200, 480, 180, 80, boarColor)
-boar.velocity= [1.5,0]
-let cayote = makeCharacter(200, 400, 130, 80, cayoteColor)
-cayote.velocity= [3,0]
-let lion = makeCharacter(200, 320, 160, 80, lionColor)
-lion.velocity= [1,0]
-let fox = makeCharacter(200, 240, 120, 80, foxColor)
+let boar = makeCharacter(200, 480, 150, 80, boarImage)
+boar.velocity= [3,0]
+let cayote = makeCharacter(200, 400, 130, 80, cayoteImage)
+cayote.velocity= [3.5,0]
+let lion = makeCharacter(200, 320, 140, 80, lionImage)
+lion.velocity= [1.5,0]
+let fox = makeCharacter(200, 240, 140, 80, foxImage)
 fox.velocity= [4,0]
-let cat = makeCharacter(200, 160, 110, 80, catColor)
-cat.velocity= [2,0]
-
+let cat = makeCharacter(200, 160, 110, 80, catImage)
+cat.velocity= [3.5,0]
+let foxy = makeCharacter(200, 80, 100, 80, foxyImage)
+foxy.velocity= [2.5,0]
 
 //Array of Enemies
-const enemies = [wolf, bear, boar, cayote, lion, fox, cat]
+const enemies = [wolf, bear, boar, cayote, lion, fox, cat, foxy]
 
 //Function to draw characters
-function drawCharacter (x, y, width, height, color) {
+function drawCharacter (x, y, width, height, image) {
   let ctx = getContext ()
-  ctx.fillStyle = color
-  ctx.fillRect(x, y, width, height)
+  ctx.drawImage(image, x, y, width, height)
+ 
 }
 // Function to draw objects on the screen 
 function drawScreen() {
+    let playerDead= false
   clearScreen()
   updateEnemyPosition()
   if (collision()){
+      playerDead= true
     window.clearInterval(animationId)
     alert(("You got eaten!"))
   }
   endGame()
-  drawCharacter(rabbit.x, rabbit.y, rabbit.width, rabbit.height, rabbit.color)
-  drawCharacter(wolf.x, wolf.y, wolf.width, wolf.height, wolf.color)
-  drawCharacter(bear.x, bear.y, bear.width, bear.height, bear.color)
-  drawCharacter(boar.x, boar.y, boar.width, boar.height, boar.color)
-  drawCharacter(cayote.x, cayote.y, cayote.width, cayote.height, cayote.color)
-  drawCharacter(lion.x, lion.y, lion.width, lion.height, lion.color)
-  drawCharacter(fox.x, fox.y, fox.width, fox.height, fox.color)
-  drawCharacter(cat.x, cat.y, cat.width, cat.height, cat.color)
+if (playerDead) { 
+    drawCharacter(rabbit.x,rabbit.y, rabbit.width, rabbit.height, rabbitDeadimg)
+    
+}  else { drawCharacter(rabbit.x, rabbit.y, rabbit.width, rabbit.height, rabbit.image)
+
+}
+  
+  drawCharacter(wolf.x, wolf.y, wolf.width, wolf.height, wolf.image)
+  drawCharacter(bear.x, bear.y, bear.width, bear.height, bear.image)
+  drawCharacter(boar.x, boar.y, boar.width, boar.height, boar.image)
+  drawCharacter(cayote.x, cayote.y, cayote.width, cayote.height, cayote.image)
+  drawCharacter(lion.x, lion.y, lion.width, lion.height, lion.image)
+  drawCharacter(fox.x, fox.y, fox.width, fox.height, fox.image)
+  drawCharacter(cat.x, cat.y, cat.width, cat.height, cat.image)
+  drawCharacter(foxy.x, foxy.y, foxy.width, foxy.height, foxy.image)
 }
 
 //Event handler to control movement of the rabbit via arrow keys
