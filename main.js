@@ -7,6 +7,26 @@ function getContext () {
 // Global Variables
 const WIDTH = canvas.width
 const HEIGHT = canvas.height
+let rabbit
+let carrot
+let enemyOne
+let enemyTwo
+let enemyThree
+let enemyFour
+let enemyFive
+let enemySix
+let enemySeven
+let enemyEight
+let enemyNine
+let enemyTen
+let enemyEleven
+
+// Arrays
+let characters = []
+let enemies = []
+
+// Global Declaration of Animation ID
+let animationId
 
 //Image Variables
 const rabbitImage = new Image()
@@ -24,13 +44,32 @@ rabbitDeadimg.src = "AnimalsFarmAndPuzzlePack/Characters/Rabbit_Dead.png"
 const carrotImage= new Image ()
 carrotImage.src = "AnimalsFarmAndPuzzlePack/Objects/Carrot.png"
 
-// Global Declaration of Animation ID
-let animationId
-
 // Start Function
 function startGame () {
-  animationId = window.setInterval(drawScreen, 10)
-  console.log("Game Started!")
+
+// intialize of character objects 
+rabbit = makeCharacter(360, 720, 80, 80, rabbitImage, [0,0])
+carrot = makeCharacter(360, 0, 80, 80, carrotImage, [0,0])
+enemyOne = makeCharacter(300, 640, 80, 80, catImage, [randomVelocity(-5,5), 0])
+enemyTwo = makeCharacter(200, 560, 80, 80, foxImage, [randomVelocity(-5,5), 0])
+enemyThree = makeCharacter(200, 480, 80, 80, catImage, [randomVelocity(-5,5), 0])
+enemyFour = makeCharacter(200, 400, 80, 80, foxImage, [randomVelocity(-5,5), 0])
+enemyFive = makeCharacter(200, 320, 80, 80, catImage, [randomVelocity(-5,5), 0])
+enemySix = makeCharacter(200, 240, 80, 80, foxImage, [randomVelocity(-5,5), 0])
+enemySeven = makeCharacter(200, 160, 80, 80, catImage, [randomVelocity(-5,5), 0])
+enemyEight = makeCharacter(200, 80, 80, 80, foxImage, [randomVelocity(-5,5), 0])
+enemyNine = makeCharacter(0, 240, 80, 80, foxImage, [randomVelocity(-5,5), 0])
+enemyTen = makeCharacter(0, 160, 80, 80, catImage, [randomVelocity(-5,5), 0])
+enemyEleven = makeCharacter(0, 80, 80, 80, foxImage, [randomVelocity(-5,5), 0])
+
+// intialize of character array 
+characters = [rabbit, carrot, enemyOne, enemyTwo, enemyThree, enemyFour, enemyFive, enemySix, enemySeven, enemyEight, enemyNine, enemyTen, enemyEleven]
+
+// intialization of enemies
+enemies = characters.slice(2)
+
+animationId = window.setInterval(drawScreen, 10)
+console.log("Game Started!")
 }
 
 //Function to Clear Screen
@@ -40,7 +79,7 @@ function clearScreen () {
 }
 
 // Function to prodcue chararacter objects
-function makeCharacter (x,y, width, height, image) {
+function makeCharacter (x,y, width, height, image, velocity) {
   return {
     x: x,
     y: y,
@@ -51,6 +90,7 @@ function makeCharacter (x,y, width, height, image) {
     xLower: 0,
     yLower: 0,
     image: image,
+    velocity: velocity,
   }
 }
 
@@ -64,38 +104,6 @@ function randomVelocity (min, max) {
       return min + randomized
   }
 }
-
-// Creation of character objects 
-let rabbit = makeCharacter(360, 720, 80, 80, rabbitImage)
-let carrot = makeCharacter(360, 0, 80, 80, carrotImage)
-let wolf = makeCharacter(300, 640, 80, 80, catImage)
-wolf.velocity = [randomVelocity(-5,5) ,0]
-let bear = makeCharacter(200, 560, 80, 80, foxImage)
-bear.velocity = [randomVelocity(-5,5) ,0]
-let boar = makeCharacter(200, 480, 80, 80, catImage)
-boar.velocity= [randomVelocity(-5,5) ,0]
-let cayote = makeCharacter(200, 400, 80, 80, foxImage)
-cayote.velocity= [randomVelocity(-5,5) ,0]
-let lion = makeCharacter(200, 320, 80, 80, catImage)
-lion.velocity = [randomVelocity(-5,5) ,0]
-let fox = makeCharacter(200, 240, 80, 80, foxImage)
-fox.velocity = [randomVelocity(-5,5) ,0]
-let cat = makeCharacter(200, 160, 80, 80, catImage)
-cat.velocity = [randomVelocity(-5,5) ,0]
-let foxy = makeCharacter(200, 80, 80, 80, foxImage)
-foxy.velocity = [randomVelocity(-5,5) ,0]
-let foxTwo = makeCharacter(0, 240, 80, 80, foxImage)
-foxTwo.velocity = [randomVelocity(-5,5) ,0]
-let catTwo = makeCharacter(0, 160, 80, 80, catImage)
-catTwo.velocity = [randomVelocity(-5,5) ,0]
-let foxyTwo = makeCharacter(0, 80, 80, 80, foxImage)
-foxyTwo.velocity = [randomVelocity(-5,5) ,0]
-
-// Array of characters to be drawn
-const characters = [rabbit, carrot, wolf, bear, boar, cayote, lion, fox, cat, foxy, foxTwo, catTwo, foxyTwo]
-
-// Array of Enemies
-const enemies = [wolf, bear, boar, cayote, lion, fox, cat, foxy, foxTwo, catTwo, foxyTwo]
 
 //Function to draw characters
 function drawCharacter () {
@@ -185,4 +193,3 @@ function updateEnemyPosition () {
 
 //Event Listener for event handle keypress listener
 window.addEventListener("keydown", keyPressListener)
-
