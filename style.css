@@ -41,13 +41,15 @@ main {
    
 }
 #start-button {
-    padding: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
     background-color: rgb(15, 95, 187);
     color: rgb( 255, 255, 255)
 }
 
 #start-button:hover {
     font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration: underline;
     background-color: rgb( 255, 255, 255);
     color: rgb(0, 0, 0);
@@ -57,8 +59,13 @@ main {
     display: none;
 }
 p {
-     font-style: m6x11;
-     font-size: 32px;
+     font-family: Curier;
+     text-anchor: middle;
+     border: rgb(0, 0, 0);
+     text-decoration-line: overline;
+     text-shadow: 20px;
+     text-shadow: rgb(0, 0, 0);
+     font-size: 34px;
      color: rgb(219, 219, 219);
 
 

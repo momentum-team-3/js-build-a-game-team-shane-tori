@@ -47,6 +47,9 @@ foxyImage.src = "AnimalsFarmAndPuzzlePack/Characters/Cat_Right.png"
 const rabbitDeadimg= new Image ()
 rabbitDeadimg.src = "AnimalsFarmAndPuzzlePack/Characters/Rabbit_Dead.png"
 
+const carrotImage= new Image ()
+carrotImage.src = "AnimalsFarmAndPuzzlePack/Characters/Carrot.png"
+
 let animationId
 /*
 enemyImages = [new Image(), new Image(), new Image(), new Image()]
@@ -130,6 +133,10 @@ cat.velocity= [3.5,0]
 let foxy = makeCharacter(200, 80, 100, 80, foxyImage)
 foxy.velocity= [2.5,0]
 
+//victory area
+let carrot = makeCharacter(200, 50, 90, 80, carrotImage)
+carrot.velocity= [.1,0]
+
 //Array of Enemies
 const enemies = [wolf, bear, boar, cayote, lion, fox, cat, foxy]
 
@@ -139,6 +146,8 @@ function drawCharacter (x, y, width, height, image) {
   ctx.drawImage(image, x, y, width, height)
  
 }
+/* reset game function */
+
 // Function to draw objects on the screen 
 function drawScreen() {
     let playerDead= false
@@ -149,13 +158,14 @@ function drawScreen() {
     window.clearInterval(animationId)
     alert(("You got eaten!"))
   }
-  endGame()
+  
 if (playerDead) { 
     drawCharacter(rabbit.x,rabbit.y, rabbit.width, rabbit.height, rabbitDeadimg)
     
 }  else { drawCharacter(rabbit.x, rabbit.y, rabbit.width, rabbit.height, rabbit.image)
 
 }
+endGame()
   
   drawCharacter(wolf.x, wolf.y, wolf.width, wolf.height, wolf.image)
   drawCharacter(bear.x, bear.y, bear.width, bear.height, bear.image)
@@ -165,7 +175,10 @@ if (playerDead) {
   drawCharacter(fox.x, fox.y, fox.width, fox.height, fox.image)
   drawCharacter(cat.x, cat.y, cat.width, cat.height, cat.image)
   drawCharacter(foxy.x, foxy.y, foxy.width, foxy.height, foxy.image)
+
+  drawCharacter(carrot.x, carrot.y, carrot.width, carrot.height, carrot.image)
 }
+  
 
 //Event handler to control movement of the rabbit via arrow keys
 function keyPressListener (event) {
